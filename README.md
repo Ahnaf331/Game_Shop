@@ -5,7 +5,7 @@ A full-stack web application for exploring and purchasing games, featuring user 
 ## Technologies Used
 
 ### Frontend
-* **Next.js** & **React**
+* **Next.js** 
 * **TypeScript**
 * **Tailwind CSS**
 
