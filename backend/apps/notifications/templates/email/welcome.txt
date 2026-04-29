@@ -1,0 +1,7 @@
+Welcome to Game Shop, {{ user.first_name }}!
+
+Your account has been created. Start exploring thousands of games across PC and console platforms.
+
+Don't forget to verify your email address to unlock purchasing.
+
+— The Game Shop Team

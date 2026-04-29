@@ -1,0 +1,8 @@
+Verify your Game Shop email
+
+Hi {{ user.first_name }},
+
+Click the link below to verify your email address:
+{{ verification_url }}
+
+This link expires in 24 hours. If you didn't create an account, ignore this email.

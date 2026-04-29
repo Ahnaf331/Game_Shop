@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>Order Receipt</title></head>
+<body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+  <h1 style="color: #1a1a2e;">Order Confirmed!</h1>
+  <p>Hi {{ user.first_name }}, thank you for your purchase.</p>
+  <table style="width: 100%; border-collapse: collapse; margin: 16px 0;">
+    <thead>
+      <tr style="background: #f3f4f6;">
+        <th style="padding: 8px; text-align: left;">Item</th>
+        <th style="padding: 8px; text-align: right;">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in order.items.all %}
+      <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #e5e7eb;">
+          {% if item.game_platform %}{{ item.game_platform.game.title }} ({{ item.game_platform.platform.name }}){% else %}{{ item.bundle.name }}{% endif %}
+        </td>
+        <td style="padding: 8px; border-bottom: 1px solid #e5e7eb; text-align: right;">${{ item.unit_price }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      {% if order.points_discount > 0 %}
+      <tr>
+        <td style="padding: 8px;">Points Discount</td>
+        <td style="padding: 8px; text-align: right; color: green;">-${{ order.points_discount }}</td>
+      </tr>
+      {% endif %}
+      <tr>
+        <td style="padding: 8px; font-weight: bold;">Total</td>
+        <td style="padding: 8px; text-align: right; font-weight: bold;">${{ order.total }}</td>
+      </tr>
+    </tfoot>
+  </table>
+  <p>Your games are now in your library. Enjoy!</p>
+  <p style="color: #888; font-size: 12px;">— The Game Shop Team</p>
+</body>
+</html>

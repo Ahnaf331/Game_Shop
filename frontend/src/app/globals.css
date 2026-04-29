@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-inter: 'Inter', system-ui, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #fafafa;
+    color: #111827;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: #f1f5f9; }
+  ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #059669; }
+}
+
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(16, 185, 129, 0.1);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #6ee7b7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-green {
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.3), 0 0 60px rgba(16, 185, 129, 0.1);
+  }
+
+  .hero-grid {
+    background-image: linear-gradient(rgba(16, 185, 129, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(16, 185, 129, 0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .card-lift {
+    @apply transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl;
+  }
+
+  .input-base {
+    @apply w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900
+           placeholder:text-gray-400 outline-none transition-all duration-200
+           focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-primary-500 px-5 py-2.5
+           text-sm font-semibold text-white transition-all duration-200
+           hover:bg-primary-600 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-primary-500
+           px-5 py-2.5 text-sm font-semibold text-primary-600 transition-all duration-200
+           hover:bg-primary-50 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5
+           text-sm font-semibold text-gray-600 transition-all duration-200
+           hover:bg-gray-100 active:scale-[0.98];
+  }
+
+  .section-title {
+    @apply text-2xl font-bold text-gray-900 sm:text-3xl;
+  }
+
+  .page-container {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+}

@@ -1,0 +1,27 @@
+# Ignore env files
+.env
+.env.local
+.env.*
+
+# Ignore claude
+.claude
+
+# Python
+__pycache__/
+*.pyc
+backend/venv/
+backend/.venv/
+venv/
+env/
+
+# Node
+frontend/node_modules/
+node_modules/
+.next/
+out/
+build/
+dist/
+
+# OS generated files
+.DS_Store
+Thumbs.db

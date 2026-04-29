@@ -1,0 +1,15 @@
+Order Confirmed!
+
+Hi {{ user.first_name }}, thank you for your purchase.
+
+Items:
+{% for item in order.items.all %}
+- {% if item.game_platform %}{{ item.game_platform.game.title }} ({{ item.game_platform.platform.name }}){% else %}{{ item.bundle.name }}{% endif %} — ${{ item.unit_price }}
+{% endfor %}
+
+{% if order.points_discount > 0 %}Points Discount: -${{ order.points_discount }}{% endif %}
+Total: ${{ order.total }}
+
+Your games are now in your library.
+
+— The Game Shop Team
