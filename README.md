@@ -87,3 +87,18 @@ npm run dev
 
 ### Login
 ![Login](screenshots/login.png)
+
+### Catalog
+![Catalog](screenshots/catalog.png)
+
+### Cart
+![Cart](screenshots/cart.png)
+
+### Checkout
+![Checkout](screenshots/checkout.png)
+
+### Stripe Payment
+![Stripe Payment](screenshots/stripe_payment.png)
+
+### Payment Success
+![Payment Success](screenshots/payment_success.png)
