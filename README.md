@@ -1,75 +1,63 @@
 # Game Shop
 
-A full-stack web application for exploring and purchasing games, featuring user authentication, catalog browsing, and premium memberships.
+A full-stack web application for exploring and purchasing games, featuring user authentication, catalog browsing, shopping cart, Stripe payments, and a personal game library.
 
 ## Technologies Used
 
 ### Frontend
-* **Next.js** 
+* **Next.js 15** (App Router)
 * **TypeScript**
 * **Tailwind CSS**
+* **Zustand** (state management)
 
 ### Backend
-* **Django** & **Django REST Framework (DRF)**
+* **Django** & **Django REST Framework**
 * **PostgreSQL**
-* **Redis**
-* **Celery**
+* **Celery** (in-memory broker for development — no Redis required)
 
 ### Integrations
-* **Stripe** (Payments & Subscriptions)
+* **Stripe** (Checkout & Subscriptions)
 
 ## Run Instructions
 
 ### Prerequisites
-* Node.js and npm
+* Node.js 18+ and npm
 * Python 3.10+
 * PostgreSQL
-* Redis (for Celery background tasks)
 
 ### Backend Setup
 ```bash
 cd backend
 python -m venv venv
-venv\Scripts\activate          # On Windows
-# source venv/bin/activate     # On macOS/Linux
+venv\Scripts\activate          # Windows
+# source venv/bin/activate     # macOS/Linux
 pip install -r requirements.txt
 
-# Configure your environment variables
 cp .env.example .env
+# Fill in DATABASE_URL, SECRET_KEY, STRIPE_SECRET_KEY, etc.
 
-# Run database migrations
 python manage.py migrate
 python manage.py createsuperuser
+python manage.py seed_games      # Optional: seed 12 popular games
 
-# Start the development server
 python manage.py runserver
 ```
 
-### Celery Workers (Optional, for async tasks)
-Requires Redis running on `localhost:6379`.
-```bash
-# Terminal 2 - Celery worker
-cd backend
-venv\Scripts\activate
-celery -A config.celery worker --loglevel=info
-
-# Terminal 3 - Celery beat scheduler
-cd backend
-venv\Scripts\activate
-celery -A config.celery beat --loglevel=info
-```
+> **Note:** No Redis or RabbitMQ needed in development. Celery uses an in-memory broker automatically.
 
 ### Frontend Setup
 ```bash
 cd frontend
 npm install
 
-# Set up local environment variables
-# Ensure your NEXT_PUBLIC_API_URL and Stripe keys are configured in .env.local
+# Create .env.local with:
+# NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
+# NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
 
-# Start the development server
 npm run dev
 ```
+
+Open [http://localhost:3000](http://localhost:3000).
 
 ## Screenshots
 
@@ -102,3 +90,6 @@ npm run dev
 
 ### Payment Success
 ![Payment Success](screenshots/payment_success.png)
+
+### My Library
+![My Library](screenshots/library.png)

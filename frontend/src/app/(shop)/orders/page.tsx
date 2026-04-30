@@ -22,7 +22,6 @@ export default function OrdersPage() {
   const { isAuthenticated } = useAuthStore()
   const [orders, setOrders] = useState<Order[]>([])
   const [loading, setLoading] = useState(true)
-
   useEffect(() => {
     if (!isAuthenticated) { setLoading(false); return }
     ordersApi
@@ -31,6 +30,7 @@ export default function OrdersPage() {
       .catch(() => {})
       .finally(() => setLoading(false))
   }, [isAuthenticated])
+
 
   if (!isAuthenticated) {
     return (

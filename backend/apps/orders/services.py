@@ -114,8 +114,7 @@ class OrderService:
             )
 
         # Fire domain event — signals handle inventory and email
-        from django.dispatch import Signal
-        order_paid = Signal()
+        from apps.orders.signals import order_paid
         order_paid.send(sender=Order, order=order)
 
         return order

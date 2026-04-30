@@ -30,7 +30,10 @@ class RegisterView(APIView):
         user = service.register(**serializer.validated_data)
 
         raw_token = service.request_email_verification(user)
-        send_verification_email.delay(str(user.id), raw_token)
+        try:
+            send_verification_email.delay(str(user.id), raw_token)
+        except Exception:
+            pass
 
         return Response(
             {
@@ -86,7 +89,10 @@ class ResendVerificationView(APIView):
 
         service = AccountService()
         raw_token = service.request_email_verification(request.user)
-        send_verification_email.delay(str(request.user.id), raw_token)
+        try:
+            send_verification_email.delay(str(request.user.id), raw_token)
+        except Exception:
+            pass
         return Response({'message': 'Verification email sent.'})
 
 
@@ -134,7 +140,10 @@ class PasswordResetRequestView(APIView):
         )
 
         if user and raw_token:
-            send_password_reset_email.delay(str(user.id), raw_token)
+            try:
+                send_password_reset_email.delay(str(user.id), raw_token)
+            except Exception:
+                pass
 
         # Always return 200 to prevent user enumeration
         return Response(

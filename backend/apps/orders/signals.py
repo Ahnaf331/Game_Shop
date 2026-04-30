@@ -14,4 +14,7 @@ def create_inventory_items(sender, order, **kwargs):
 def queue_receipt_email(sender, order, **kwargs):
     """Queue receipt email via Celery."""
     from apps.notifications.tasks import send_order_receipt_email
-    send_order_receipt_email.delay(str(order.id))
+    try:
+        send_order_receipt_email.delay(str(order.id))
+    except Exception:
+        pass

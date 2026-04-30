@@ -41,7 +41,7 @@ export default function GameDetailPage() {
       gamePlatformId: selectedPlatform.id,
       title: game.title,
       platform: selectedPlatform.platform.name,
-      price: parseFloat(selectedPlatform.current_price),
+      price: parseFloat(selectedPlatform.effective_price),
       coverImage: game.cover_image,
     })
     toast.success(`${game.title} added to cart`)
@@ -72,7 +72,7 @@ export default function GameDetailPage() {
     )
   }
 
-  const hasDiscount = selectedPlatform && selectedPlatform.discount_percent > 0
+  const hasDiscount = selectedPlatform && parseFloat(selectedPlatform.discount_pct) > 0
 
   return (
     <div className="bg-gray-50/50">
@@ -171,7 +171,7 @@ export default function GameDetailPage() {
                   <div>
                     <div className="flex items-baseline gap-2">
                       <span className="text-3xl font-extrabold text-gray-900">
-                        {formatPrice(selectedPlatform.current_price)}
+                        {formatPrice(selectedPlatform.effective_price)}
                       </span>
                       {hasDiscount && (
                         <span className="text-sm text-gray-400 line-through">
@@ -182,7 +182,7 @@ export default function GameDetailPage() {
                     {hasDiscount && (
                       <Badge variant="red" className="mt-1">
                         <Tag size={10} className="mr-1" />
-                        {selectedPlatform.discount_percent}% off
+                        {selectedPlatform.discount_pct}% off
                       </Badge>
                     )}
                   </div>

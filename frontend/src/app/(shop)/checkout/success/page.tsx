@@ -1,8 +1,23 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
+import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { CheckCircle2, Package, Library } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { paymentsApi } from '@/lib/api'
 
 export default function CheckoutSuccessPage() {
+  const searchParams = useSearchParams()
+  const orderId = searchParams.get('order_id')
+  const confirmed = useRef(false)
+
+  useEffect(() => {
+    if (!orderId || confirmed.current) return
+    confirmed.current = true
+    paymentsApi.devSimulatePayment(orderId).catch(() => {})
+  }, [orderId])
+
   return (
     <div className="flex min-h-[70vh] items-center justify-center bg-gray-50/50">
       <div className="max-w-md w-full mx-4 rounded-2xl border border-gray-100 bg-white p-10 shadow-sm text-center">

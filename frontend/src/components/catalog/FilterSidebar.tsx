@@ -56,7 +56,7 @@ export function FilterSidebar({
         <div className="space-y-1">
           {sortOptions.map((opt) => (
             <button
-              key={opt.value}
+              key={opt.label}
               onClick={() => onSortChange(opt.value)}
               className={cn(
                 'w-full rounded-lg px-3 py-2 text-left text-sm transition-colors',

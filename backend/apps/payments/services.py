@@ -40,7 +40,7 @@ class PaymentService:
                 payment_method_types=['card'],
                 mode='payment',
                 line_items=self._build_line_items(order),
-                success_url=f"{settings.FRONTEND_URL}/checkout/success?session_id={{CHECKOUT_SESSION_ID}}",
+                success_url=f"{settings.FRONTEND_URL}/checkout/success?session_id={{CHECKOUT_SESSION_ID}}&order_id={str(order.id)}",
                 cancel_url=f"{settings.FRONTEND_URL}/checkout/cancel",
                 metadata={
                     'order_id': str(order.id),

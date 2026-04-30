@@ -118,6 +118,9 @@ export const ordersApi = {
 export const paymentsApi = {
   createCheckout: (orderId: string) =>
     api.post<{ checkout_url: string }>('/payments/checkout/', { order_id: orderId }),
+
+  devSimulatePayment: (orderId: string) =>
+    api.post<{ message: string; status: string }>(`/payments/dev/simulate-payment/${orderId}/`),
 }
 
 // ─── Subscriptions ───────────────────────────────────────────────────────────

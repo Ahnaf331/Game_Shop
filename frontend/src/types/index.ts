@@ -90,10 +90,12 @@ export interface Order {
 
 export interface InventoryItem {
   id: string
-  game_platform: GamePlatform
-  key: string
-  redeemed_at: string | null
-  created_at: string
+  game_title: string
+  game_slug: string
+  platform_name: string
+  platform_family: string
+  cover_image: string | null
+  acquired_at: string
 }
 
 export interface SubscriptionPlan {
